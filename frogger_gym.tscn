@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b83ov23vrpvj5"]
+
+[ext_resource type="PackedScene" uid="uid://ber283x8u6ura" path="res://assets/frog.tscn" id="1_fedk0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fedk0"]
+
+[node name="Gym" type="Node2D"]
+
+[node name="Frog" parent="." instance=ExtResource("1_fedk0")]
+position = Vector2(81, 40)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(96.5, 10.999998)
+rotation = 3.1415925
+shape = SubResource("WorldBoundaryShape2D_fedk0")
