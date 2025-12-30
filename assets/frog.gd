@@ -35,22 +35,19 @@ func get_input_direction() -> Vector2:
 func try_start_move(dir: Vector2):
 	var motion := dir * STEP
 	
+	# check if there would be collision from the move, if so bail
 	if test_move(global_transform, motion):
 		return
 	
 	#no collision, commit to smooth movement
 	target_pos = global_position + motion
 	start_jump(target_pos)
-	#is_moving = true
 	
-	#var tween := create_tween()
-	#tween.tween_property(self, "global_position", target_pos, 0.12).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	#tween.finished.connect(func(): is_moving = false)
-	#frog_sprite.play("jump")
 	
 func start_jump(target_pos: Vector2):
 	is_moving = true
 	
+	# interrupt the jump and restart if new input arrives - feels more responsive
 	if jump_tween and jump_tween.is_running():
 		jump_tween.kill()
 	
