@@ -1,10 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://b83ov23vrpvj5"]
+[gd_scene load_steps=8 format=3 uid="uid://b83ov23vrpvj5"]
 
 [ext_resource type="PackedScene" uid="uid://ber283x8u6ura" path="res://assets/frog.tscn" id="1_fedk0"]
 [ext_resource type="Script" uid="uid://b0c4fqqhe351e" path="res://frogger_gym.gd" id="1_jt4di"]
 [ext_resource type="Texture2D" uid="uid://bc47drgrupljn" path="res://content/level_guide.png" id="2_jt4di"]
+[ext_resource type="Script" uid="uid://cxv2f2h2d0pft" path="res://death_area.gd" id="4_hqt0o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fedk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kddss"]
+size = Vector2(240, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqt0o"]
+size = Vector2(20, 12)
 
 [node name="Gym" type="Node2D"]
 script = ExtResource("1_jt4di")
@@ -12,9 +19,6 @@ script = ExtResource("1_jt4di")
 [node name="TEMPLevelGuide" type="Sprite2D" parent="."]
 position = Vector2(120, 128)
 texture = ExtResource("2_jt4di")
-
-[node name="Frog" parent="." instance=ExtResource("1_fedk0")]
-position = Vector2(120, 224)
 
 [node name="WorldBoundaries" type="Node" parent="."]
 
@@ -53,3 +57,40 @@ position = Vector2(24, 12)
 position = Vector2(96.5, 10.999998)
 rotation = 3.1415925
 shape = SubResource("WorldBoundaryShape2D_fedk0")
+
+[node name="DeathArea" type="Area2D" parent="."]
+position = Vector2(120, 112)
+script = ExtResource("4_hqt0o")
+
+[node name="ColorRect" type="ColorRect" parent="DeathArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -8.0
+offset_right = 120.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+shape = SubResource("RectangleShape2D_kddss")
+
+[node name="Frog" parent="." instance=ExtResource("1_fedk0")]
+position = Vector2(120, 224)
+
+[node name="SafeArea" type="Area2D" parent="."]
+position = Vector2(120, 112)
+
+[node name="ColorRect" type="ColorRect" parent="SafeArea"]
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 10.0
+offset_bottom = 8.0
+color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeArea"]
+shape = SubResource("RectangleShape2D_hqt0o")
