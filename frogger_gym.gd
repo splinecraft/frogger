@@ -3,7 +3,9 @@ extends Node2D
 @onready var frog: CharacterBody2D = $Frog
 @onready var death_area: Area2D = $DeathArea
 @onready var safe_area: Area2D = $SafeArea
+@onready var mover: Mover = $Mover
 
+@onready var lane: Area2D = $Lane
 
 var in_water : bool = false
 var on_platform : bool = false
@@ -14,12 +16,17 @@ func _ready() -> void:
 	death_area.body_exited.connect(_in_water.bind(false))
 	safe_area.body_entered.connect(_on_platform.bind(true))
 	safe_area.body_exited.connect(_on_platform.bind(false))
+	mover.safe_area.body_entered.connect(_on_platform.bind(true))
+	mover.safe_area.body_exited.connect(_on_platform.bind(false))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if in_water and not on_platform:
 		print("dead!")
+	lane.apply_lane_motion(delta)
+	
+		
 
 
 func _in_water(body, state) -> void:

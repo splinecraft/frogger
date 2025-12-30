@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqluyffl4krev"]
+
+[ext_resource type="Script" uid="uid://d2h080bkdhuee" path="res://mover.gd" id="1_xk1l1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0ouw"]
+size = Vector2(52, 10)
+
+[node name="Mover" type="Node2D"]
+script = ExtResource("1_xk1l1")
+velocity = Vector2(25, 0)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -7.0
+offset_right = 28.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3882353, 0.5137255, 1, 1)
+
+[node name="SafeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeArea"]
+shape = SubResource("RectangleShape2D_t0ouw")

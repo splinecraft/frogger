@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var frog_sprite: AnimatedSprite2D = $FrogSprite
+@onready var area_2d: Area2D = $Area2D
 
 const JUMP_TIME := 0.1
 const STEP := 16
@@ -8,6 +9,10 @@ const STEP := 16
 var is_moving := false
 var target_pos: Vector2
 var jump_tween: Tween
+
+func _ready() -> void:
+	area_2d.body_entered.connect(_on_body_entered)
+
 
 func _process(delta: float) -> void:
 	if is_moving:
@@ -60,3 +65,12 @@ func start_jump(target_pos: Vector2):
 func _on_jump_finished():
 	is_moving = false
 	frog_sprite.play("idle")
+	
+func _on_body_entered(body):
+	if body.is_in_group("Enemy"):
+		print("run over!")
+	
+	
+	
+func apply_lane_motion(motion: Vector2):
+	global_position += motion
