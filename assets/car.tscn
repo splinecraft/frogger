@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt0mssnokv163"]
 
-[ext_resource type="Script" uid="uid://bqt2yjfb8c42q" path="res://car.gd" id="1_ho5m3"]
+[ext_resource type="Script" uid="uid://bqt2yjfb8c42q" path="res://assets/car.gd" id="1_ho5m3"]
 [ext_resource type="Texture2D" uid="uid://dfvg4a17geh61" path="res://content/temp_frog.png" id="2_2d0ee"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]

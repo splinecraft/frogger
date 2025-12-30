@@ -1,23 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://b83ov23vrpvj5"]
+[gd_scene load_steps=7 format=3 uid="uid://b83ov23vrpvj5"]
 
 [ext_resource type="PackedScene" uid="uid://ber283x8u6ura" path="res://assets/frog.tscn" id="1_fedk0"]
 [ext_resource type="Script" uid="uid://b0c4fqqhe351e" path="res://frogger_gym.gd" id="1_jt4di"]
 [ext_resource type="Texture2D" uid="uid://bc47drgrupljn" path="res://content/level_guide.png" id="2_jt4di"]
-[ext_resource type="Script" uid="uid://ymycjcb8v5yf" path="res://lane.gd" id="4_hjc2u"]
-[ext_resource type="Script" uid="uid://cxv2f2h2d0pft" path="res://death_area.gd" id="4_hqt0o"]
+[ext_resource type="PackedScene" uid="uid://cxvsjq2kthf42" path="res://assets/lane.tscn" id="4_5m07v"]
 [ext_resource type="PackedScene" uid="uid://dt0mssnokv163" path="res://assets/car.tscn" id="5_5m07v"]
-[ext_resource type="PackedScene" uid="uid://dqluyffl4krev" path="res://assets/mover.tscn" id="5_kddss"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fedk0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kddss"]
-size = Vector2(240, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5m07v"]
-size = Vector2(296, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqt0o"]
-size = Vector2(12, 10)
 
 [node name="Gym" type="Node2D"]
 script = ExtResource("1_jt4di")
@@ -45,69 +34,74 @@ position = Vector2(96.5, 10.999998)
 rotation = 3.1415925
 shape = SubResource("WorldBoundaryShape2D_fedk0")
 
-[node name="DeathArea" type="Area2D" parent="."]
-position = Vector2(120, 112)
-script = ExtResource("4_hqt0o")
+[node name="StartLane" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 224)
+speed = 0.0
 
-[node name="ColorRect" type="ColorRect" parent="DeathArea"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -8.0
-offset_right = 120.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0, 0, 1)
+[node name="Road_01" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 208)
+lane_type = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
-shape = SubResource("RectangleShape2D_kddss")
+[node name="Road_02" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 192)
+lane_type = 1
 
-[node name="Lane" type="Area2D" parent="."]
+[node name="Road_03" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 176)
+lane_type = 1
+
+[node name="Road_04" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
 position = Vector2(120, 160)
-script = ExtResource("4_hjc2u")
-speed = 50.0
-direction = Vector2(1, 0)
+lane_type = 1
 
-[node name="ColorRect" type="ColorRect" parent="Lane"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -8.0
-offset_right = 120.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.09019608, 0, 0, 1)
+[node name="Road_05" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 144)
+lane_type = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lane"]
-shape = SubResource("RectangleShape2D_5m07v")
+[node name="MidSafe" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 128)
+speed = 0.0
 
-[node name="Car" parent="Lane" instance=ExtResource("5_5m07v")]
-position = Vector2(-108, 0)
-
-[node name="SafeArea" type="Area2D" parent="."]
+[node name="Water_01" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
 position = Vector2(120, 112)
+lane_type = 2
+carries_frog = true
 
-[node name="ColorRect" type="ColorRect" parent="SafeArea"]
-offset_left = -8.0
-offset_top = -6.0
-offset_right = 8.0
-offset_bottom = 6.0
-color = Color(0, 1, 0, 1)
+[node name="Water_02" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 96)
+lane_type = 2
+carries_frog = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeArea"]
-shape = SubResource("RectangleShape2D_hqt0o")
+[node name="Water_03" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 80)
+lane_type = 2
+carries_frog = true
 
-[node name="Mover" parent="." instance=ExtResource("5_kddss")]
-position = Vector2(-33, 80)
+[node name="Water_04" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 64)
+lane_type = 2
+carries_frog = true
+
+[node name="Water_05" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(120, 48)
+lane_type = 2
+carries_frog = true
 
 [node name="Frog" parent="." instance=ExtResource("1_fedk0")]
 unique_name_in_owner = true
 position = Vector2(120, 224)
+
+[node name="Car" parent="." instance=ExtResource("5_5m07v")]
+position = Vector2(12, 160)
