@@ -1,8 +1,6 @@
 extends Node2D
 
 @onready var frog: CharacterBody2D = $Frog
-@onready var death_area: Area2D = $DeathArea
-@onready var safe_area: Area2D = $SafeArea
 @onready var road_01: Area2D = %Road_01
 @onready var road_02: Area2D = %Road_02
 @onready var road_03: Area2D = %Road_03

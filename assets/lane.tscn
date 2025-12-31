@@ -11,4 +11,9 @@ speed = 50.0
 direction = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_5m07v")
+
+[node name="SpawnPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(179, 0)

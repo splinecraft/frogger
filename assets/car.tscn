@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dfvg4a17geh61" path="res://content/temp_frog.png" id="2_2d0ee"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
-size = Vector2(14, 12)
+size = Vector2(12, 12)
 
 [node name="Car" type="CharacterBody2D" groups=["Enemy"]]
+motion_mode = 1
 script = ExtResource("1_ho5m3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

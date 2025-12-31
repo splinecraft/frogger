@@ -1,18 +1,55 @@
 extends Area2D
 
+signal spawn_tick
+
 enum LaneType {SAFE, ROAD, WATER, GOAL}
 
 @export var lane_type : LaneType
 @export var speed: float = 0.0
 @export var direction: Vector2 = Vector2.ZERO
 @export var carries_frog: bool = false
+@export var traffic_pattern: TrafficPattern
+
+@onready var spawn_position: Marker2D = %SpawnPosition
 
 var bodies_in_lane : Array[Node2D] = []
+var pattern_index: int = 0
+var distance_accum: float = 0.0
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	spawn_tick.connect(_on_lane_spawn_tick)
+	
+	
+func _physics_process(delta: float) -> void:
+	if not traffic_pattern:
+		return
+		
+	distance_accum += speed * delta
+	
+	if distance_accum >= traffic_pattern.spacing_pixels:
+		distance_accum -= traffic_pattern.spacing_pixels
+		emit_signal("spawn_tick")	
+	
+func _on_lane_spawn_tick() -> void:
+	var char = traffic_pattern.pattern[pattern_index]
+	
+	if char == "C":
+		spawn_object()
+		
+	pattern_index += 1
+	if pattern_index >= traffic_pattern.pattern.length():
+		if traffic_pattern.loop:
+			pattern_index = 0
+		else:
+			set_physics_process(false)	
+	
+func spawn_object():
+	var object = traffic_pattern.object_scene.instantiate()
+	add_child(object)
+	object.global_position = Vector2(spawn_position.global_position)
 	
 func _on_body_entered(body):
 	bodies_in_lane.append(body)

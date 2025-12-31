@@ -40,11 +40,6 @@ func get_input_direction() -> Vector2:
 func try_start_move(dir: Vector2):
 	var motion := dir * STEP
 	
-	# check if there would be collision from the move, if so bail
-	if test_move(global_transform, motion):
-		return
-	
-	#no collision, commit to smooth movement
 	target_pos = global_position + motion
 	start_jump(target_pos)
 	
