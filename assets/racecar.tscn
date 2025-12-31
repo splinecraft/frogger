@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://eilbu5qchvjk"]
+
+[ext_resource type="Script" uid="uid://bqt2yjfb8c42q" path="res://assets/car.gd" id="1_g5irg"]
+[ext_resource type="Texture2D" uid="uid://cm0pdmrrxtytw" path="res://content/racecar.png" id="2_g5irg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iryei"]
+atlas = ExtResource("2_g5irg")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv0xq"]
+atlas = ExtResource("2_g5irg")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1337m"]
+atlas = ExtResource("2_g5irg")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlclr"]
+atlas = ExtResource("2_g5irg")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfk3d"]
+atlas = ExtResource("2_g5irg")
+region = Rect2(80, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xh5tt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iryei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv0xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1337m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlclr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfk3d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
+size = Vector2(13, 12)
+
+[node name="Car" type="CharacterBody2D" groups=["Enemy"]]
+motion_mode = 1
+script = ExtResource("1_g5irg")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_xh5tt")
+autoplay = "default"
+frame = 4
+frame_progress = 0.474622
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_npdvv")

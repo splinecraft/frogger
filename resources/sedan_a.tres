@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrafficPattern" load_steps=3 format=3 uid="uid://2sopmq78cn3j"]
+
+[ext_resource type="Script" uid="uid://duvk3cr4t2wo4" path="res://assets/traffic_pattern.gd" id="1_dsaq2"]
+[ext_resource type="PackedScene" uid="uid://conwgktpiqd5x" path="res://assets/sedan.tscn" id="1_tsnp0"]
+
+[resource]
+script = ExtResource("1_dsaq2")
+pattern = "C___C___C____"
+object_scene = ExtResource("1_tsnp0")
+metadata/_custom_type_script = "uid://duvk3cr4t2wo4"

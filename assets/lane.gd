@@ -2,10 +2,8 @@ extends Area2D
 
 signal spawn_tick
 
-enum LaneType {SAFE, ROAD, WATER, GOAL}
-
-@export var lane_type : LaneType
 @export var speed: float = 0.0
+@export var spawn_pos: Vector2
 @export var direction: Vector2 = Vector2.ZERO
 @export var carries_frog: bool = false
 @export var traffic_pattern: TrafficPattern
@@ -21,6 +19,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	spawn_tick.connect(_on_lane_spawn_tick)
+	spawn_position.position = spawn_pos
 	
 	
 func _physics_process(delta: float) -> void:

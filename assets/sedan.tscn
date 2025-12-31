@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://conwgktpiqd5x"]
+
+[ext_resource type="Script" uid="uid://bqt2yjfb8c42q" path="res://assets/car.gd" id="1_jkllv"]
+[ext_resource type="Texture2D" uid="uid://chlavcfhoo8vg" path="res://content/sedan.png" id="2_jkllv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kcp0"]
+atlas = ExtResource("2_jkllv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jkmo"]
+atlas = ExtResource("2_jkllv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq5rv"]
+atlas = ExtResource("2_jkllv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kospn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kcp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jkmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq5rv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
+size = Vector2(10, 9)
+
+[node name="Sedan" type="CharacterBody2D" groups=["Enemy"]]
+motion_mode = 1
+script = ExtResource("1_jkllv")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_kospn")
+autoplay = "default"
+frame = 2
+frame_progress = 0.32602283
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_npdvv")
