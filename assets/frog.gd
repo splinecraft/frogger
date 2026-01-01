@@ -9,6 +9,8 @@ const STEP := 16
 var is_moving := false
 var target_pos: Vector2
 var jump_tween: Tween
+var on_platform: bool = false
+var in_water: bool = false
 
 func _ready() -> void:
 	area_2d.body_entered.connect(_on_body_entered)
@@ -21,6 +23,7 @@ func _process(delta: float) -> void:
 	var dir := get_input_direction()
 	if dir != Vector2.ZERO:
 		try_start_move(dir)
+
 
 func get_input_direction() -> Vector2:
 	if Input.is_action_just_pressed("left"):
@@ -36,6 +39,7 @@ func get_input_direction() -> Vector2:
 		frog_sprite.rotation_degrees = -180.0
 		return Vector2.DOWN
 	return Vector2.ZERO
+	
 	
 func try_start_move(dir: Vector2):
 	var motion := dir * STEP
@@ -57,14 +61,15 @@ func start_jump(target_pos: Vector2):
 	jump_tween.tween_property(self, "global_position", target_pos, JUMP_TIME).set_trans(Tween.TRANS_SINE)
 	jump_tween.finished.connect(_on_jump_finished)
 	
+	
 func _on_jump_finished():
 	is_moving = false
 	frog_sprite.play("idle")
 	
+	
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
 		print("run over!")
-	
 	
 	
 func apply_lane_motion(motion: Vector2):

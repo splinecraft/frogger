@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgwnqmcmffa78"]
+
+[ext_resource type="PackedScene" uid="uid://tw5cx6ech372" path="res://components/platform_component.tscn" id="1_0qdfk"]
+[ext_resource type="Script" uid="uid://b2endvr04tku3" path="res://assets/platform.gd" id="1_qsvuy"]
+[ext_resource type="Texture2D" uid="uid://b1je75y43a671" path="res://content/small_log.png" id="2_qsvuy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lom4m"]
+atlas = ExtResource("2_qsvuy")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_87bdm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lom4m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyb4b"]
+size = Vector2(46, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsvuy"]
+size = Vector2(20, 8)
+
+[node name="SmallLog" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_qsvuy")
+
+[node name="PlatformComponent" parent="." node_paths=PackedStringArray("area_2d", "animated_sprite2d") instance=ExtResource("1_0qdfk")]
+area_2d = NodePath("../Area2D")
+animated_sprite2d = NodePath("../AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_87bdm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tyb4b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qsvuy")
+
+[connection signal="body_entered" from="Area2D" to="PlatformComponent" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="PlatformComponent" method="_on_body_exited"]

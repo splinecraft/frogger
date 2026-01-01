@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b83ov23vrpvj5"]
+[gd_scene load_steps=12 format=3 uid="uid://b83ov23vrpvj5"]
 
 [ext_resource type="PackedScene" uid="uid://ber283x8u6ura" path="res://assets/frog.tscn" id="1_fedk0"]
 [ext_resource type="Script" uid="uid://b0c4fqqhe351e" path="res://frogger_gym.gd" id="1_jt4di"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bt8jigvsk7eim" path="res://resources/tractor_a.tres" id="6_5m07v"]
 [ext_resource type="Resource" uid="uid://2sopmq78cn3j" path="res://resources/sedan_a.tres" id="7_r7bsx"]
 [ext_resource type="Resource" uid="uid://c1fx5o6alvi7y" path="res://resources/racecar.tres" id="8_8w67v"]
+[ext_resource type="Resource" uid="uid://blbckj5dpk1nu" path="res://resources/small_log.tres" id="9_6vh58"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fedk0"]
 
@@ -92,8 +93,8 @@ speed = 0.0
 unique_name_in_owner = true
 position = Vector2(120, 112)
 speed = 80.0
-direction = Vector2(-1, 0)
-carries_frog = true
+spawn_pos = Vector2(-140, 0)
+traffic_pattern = ExtResource("9_6vh58")
 
 [node name="Water_02" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
