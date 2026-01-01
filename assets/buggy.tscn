@@ -1,19 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://b40jkl1rwoxh0"]
+[gd_scene load_steps=8 format=3 uid="uid://b40jkl1rwoxh0"]
 
 [ext_resource type="Script" uid="uid://bqt2yjfb8c42q" path="res://assets/car.gd" id="1_hi2rm"]
 [ext_resource type="Texture2D" uid="uid://d4jlsepjfkawg" path="res://content/buggy.png" id="2_hi2rm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhaxg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi2rm"]
 atlas = ExtResource("2_hi2rm")
 region = Rect2(0, 0, 20, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tcheb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhaxg"]
 atlas = ExtResource("2_hi2rm")
 region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcheb"]
+atlas = ExtResource("2_hi2rm")
+region = Rect2(40, 0, 20, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wls0"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi2rm")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dhaxg")
 }, {
@@ -35,7 +42,8 @@ script = ExtResource("1_hi2rm")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8wls0")
 autoplay = "default"
-frame_progress = 0.09583793
+frame = 1
+frame_progress = 0.6206954
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_npdvv")

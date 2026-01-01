@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b83ov23vrpvj5"]
+[gd_scene load_steps=15 format=3 uid="uid://b83ov23vrpvj5"]
 
 [ext_resource type="PackedScene" uid="uid://ber283x8u6ura" path="res://assets/frog.tscn" id="1_fedk0"]
 [ext_resource type="Script" uid="uid://b0c4fqqhe351e" path="res://frogger_gym.gd" id="1_jt4di"]
@@ -9,7 +9,10 @@
 [ext_resource type="Resource" uid="uid://bt8jigvsk7eim" path="res://resources/tractor_a.tres" id="6_5m07v"]
 [ext_resource type="Resource" uid="uid://2sopmq78cn3j" path="res://resources/sedan_a.tres" id="7_r7bsx"]
 [ext_resource type="Resource" uid="uid://c1fx5o6alvi7y" path="res://resources/racecar.tres" id="8_8w67v"]
-[ext_resource type="Resource" uid="uid://blbckj5dpk1nu" path="res://resources/small_log.tres" id="9_6vh58"]
+[ext_resource type="Resource" uid="uid://wwdn06c64120" path="res://resources/semitruck.tres" id="9_in348"]
+[ext_resource type="Resource" uid="uid://blbckj5dpk1nu" path="res://resources/small_log_alt.tres" id="10_vwvlp"]
+[ext_resource type="Resource" uid="uid://cjmy0ytovwtax" path="res://resources/large_log_alt.tres" id="11_vwvlp"]
+[ext_resource type="Resource" uid="uid://d2jk1ct0f7ucd" path="res://resources/med_log_alt.tres" id="12_vwvlp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fedk0"]
 
@@ -83,6 +86,10 @@ traffic_pattern = ExtResource("8_8w67v")
 [node name="Road_05" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
 position = Vector2(120, 144)
+speed = 40.0
+spawn_pos = Vector2(140, 0)
+direction = Vector2(-1, 0)
+traffic_pattern = ExtResource("9_in348")
 
 [node name="MidSafe" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
@@ -94,33 +101,36 @@ unique_name_in_owner = true
 position = Vector2(120, 112)
 speed = 80.0
 spawn_pos = Vector2(-140, 0)
-traffic_pattern = ExtResource("9_6vh58")
 
 [node name="Water_02" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
 position = Vector2(120, 96)
-speed = 80.0
-carries_frog = true
+spawn_pos = Vector2(-140, 0)
+traffic_pattern = ExtResource("10_vwvlp")
+use_alt_pattern = true
 
 [node name="Water_03" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
 position = Vector2(120, 80)
-speed = 80.0
-direction = Vector2(-1, 0)
-carries_frog = true
+speed = 70.0
+spawn_pos = Vector2(-190, 0)
+traffic_pattern = ExtResource("11_vwvlp")
+use_alt_pattern = true
+alt_pattern_gap = 60.0
 
 [node name="Water_04" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
 position = Vector2(120, 64)
 speed = 80.0
-carries_frog = true
 
 [node name="Water_05" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
 position = Vector2(120, 48)
-speed = 80.0
-direction = Vector2(-1, 0)
-carries_frog = true
+speed = 60.0
+spawn_pos = Vector2(-150, 0)
+traffic_pattern = ExtResource("12_vwvlp")
+use_alt_pattern = true
+alt_pattern_gap = 48.0
 
 [node name="Frog" parent="." instance=ExtResource("1_fedk0")]
 unique_name_in_owner = true

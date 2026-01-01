@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbb66icisoqx"]
+
+[ext_resource type="Script" uid="uid://bqt2yjfb8c42q" path="res://assets/car.gd" id="1_xtthv"]
+[ext_resource type="Texture2D" uid="uid://co226q637ial" path="res://content/semitruck.png" id="2_cfycq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh4bu"]
+atlas = ExtResource("2_cfycq")
+region = Rect2(0, 0, 36, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xvmi"]
+atlas = ExtResource("2_cfycq")
+region = Rect2(36, 0, 36, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuy5p"]
+atlas = ExtResource("2_cfycq")
+region = Rect2(72, 0, 36, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h15ia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh4bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xvmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuy5p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
+size = Vector2(26, 12)
+
+[node name="Semitruck" type="CharacterBody2D" groups=["Enemy"]]
+motion_mode = 1
+script = ExtResource("1_xtthv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_h15ia")
+autoplay = "default"
+frame = 1
+frame_progress = 0.70325565
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_npdvv")
