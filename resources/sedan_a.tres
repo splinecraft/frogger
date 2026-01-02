@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_dsaq2")
-pattern = "C___C___C____"
+pattern = "C___C___C______"
 object_scene = ExtResource("1_tsnp0")
 metadata/_custom_type_script = "uid://duvk3cr4t2wo4"

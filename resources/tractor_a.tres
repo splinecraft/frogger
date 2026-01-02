@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_kahox")
-pattern = "C___C__C____"
+pattern = "C___C__C_____"
 object_scene = ExtResource("1_kgurm")
 spacing_pixels = 20
 metadata/_custom_type_script = "uid://duvk3cr4t2wo4"

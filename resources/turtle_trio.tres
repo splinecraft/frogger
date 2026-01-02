@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TrafficPattern" load_steps=3 format=3 uid="uid://b2b6i5j8ttjqm"]
+
+[ext_resource type="PackedScene" uid="uid://l7yyf2vlhlg4" path="res://assets/turtle_trio.tscn" id="1_46y3b"]
+[ext_resource type="Script" uid="uid://duvk3cr4t2wo4" path="res://assets/traffic_pattern.gd" id="1_ddlti"]
+
+[resource]
+script = ExtResource("1_ddlti")
+pattern = "C"
+object_scene = ExtResource("1_46y3b")
+spacing_pixels = 66
+metadata/_custom_type_script = "uid://duvk3cr4t2wo4"
