@@ -1,7 +1,11 @@
 extends CharacterBody2D
 
 @onready var frog_sprite: AnimatedSprite2D = $FrogSprite
-@onready var area_2d: Area2D = $Area2D
+@onready var death_timer: Timer = $DeathTimer
+@onready var frog_area_2d: Area2D = $FrogArea2D
+@onready var body_collision: CollisionShape2D = $BodyCollision
+@onready var area_2d_collision: CollisionShape2D = $FrogArea2D/Area2DCollision
+
 
 const JUMP_TIME := 0.1
 const STEP := 16
@@ -11,13 +15,18 @@ var target_pos: Vector2
 var jump_tween: Tween
 var on_platform: bool = false
 var in_water: bool = false
+var frog_spawn_pos: Vector2
+var death_ip: bool = false
+var input_enabled: bool = true
 
 func _ready() -> void:
-	area_2d.body_entered.connect(_on_body_entered)
+	frog_area_2d.body_entered.connect(_on_body_entered)
+	death_timer.timeout.connect(respawn)
+	frog_spawn_pos = get_parent().get_node("FrogSpawn").global_position
 
 
 func _process(delta: float) -> void:
-	if is_moving:
+	if is_moving or not input_enabled:
 		return
 	
 	var dir := get_input_direction()
@@ -68,9 +77,28 @@ func _on_jump_finished():
 	
 	
 func _on_body_entered(body):
-	if body.is_in_group("Enemy"):
-		print("run over!")
+	if body.is_in_group("Enemy") and not death_ip:
+		vehicle_death()
 	
 	
 func apply_lane_motion(motion: Vector2):
 	global_position += motion
+	
+func vehicle_death():
+	input_enabled = false
+	print("run over!")
+	death_ip = true
+	frog_area_2d.monitoring = false
+	area_2d_collision.disabled = true
+	body_collision.disabled = true
+	frog_sprite.play("car_death")
+	death_timer.start()
+	
+func respawn():
+	frog_sprite.play("idle")
+	position = frog_spawn_pos
+	frog_area_2d.monitoring = true
+	body_collision.disabled = false
+	area_2d_collision.disabled = false
+	death_ip = false
+	input_enabled = true

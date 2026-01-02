@@ -11,6 +11,7 @@ extends Node2D
 @onready var water_large_log: Area2D = %Water_LargeLog
 @onready var water_turtle_duo: Area2D = %Water_TurtleDuo
 @onready var water_med_log: Area2D = %Water_MedLog
+@onready var frog_spawn: Marker2D = %FrogSpawn
 
 
 @onready var lanes : Array[Area2D] = [

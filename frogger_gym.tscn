@@ -144,3 +144,7 @@ alt_pattern_gap = 48.0
 [node name="Frog" parent="." instance=ExtResource("1_fedk0")]
 unique_name_in_owner = true
 position = Vector2(120, 224)
+
+[node name="FrogSpawn" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(120, 224)
