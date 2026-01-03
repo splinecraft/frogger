@@ -87,6 +87,7 @@ func spawn_object():
 	object.global_position = Vector2(spawn_position.global_position)
 	
 	
+	
 func _on_body_entered(body):
 	bodies_in_lane.append(body)
 	

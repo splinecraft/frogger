@@ -60,7 +60,7 @@ func try_start_move(dir: Vector2):
 func start_jump(target_pos: Vector2):
 	is_moving = true
 	
-	# interrupt the jump and restart if new input arrives - feels more responsive
+	# interrupt the jump and restart the tween if new input arrives - feels more responsive
 	if jump_tween and jump_tween.is_running():
 		jump_tween.kill()
 	
@@ -73,6 +73,8 @@ func start_jump(target_pos: Vector2):
 	
 func _on_jump_finished():
 	is_moving = false
+	if death_ip:
+		return
 	frog_sprite.play("idle")
 	
 	
@@ -88,17 +90,18 @@ func vehicle_death():
 	input_enabled = false
 	print("run over!")
 	death_ip = true
-	frog_area_2d.monitoring = false
-	area_2d_collision.disabled = true
-	body_collision.disabled = true
 	frog_sprite.play("car_death")
+	frog_area_2d.set_deferred("monitoring", false)
+	area_2d_collision.set_deferred("disabled", true)
+	body_collision.set_deferred("disabled", true)
+	
 	death_timer.start()
 	
 func respawn():
 	frog_sprite.play("idle")
 	position = frog_spawn_pos
-	frog_area_2d.monitoring = true
-	body_collision.disabled = false
-	area_2d_collision.disabled = false
+	frog_area_2d.set_deferred("monitoring", true)
+	area_2d_collision.set_deferred("disabled", false)
+	body_collision.set_deferred("disabled", false)
 	death_ip = false
 	input_enabled = true

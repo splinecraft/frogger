@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b83ov23vrpvj5"]
+[gd_scene load_steps=18 format=3 uid="uid://b83ov23vrpvj5"]
 
 [ext_resource type="PackedScene" uid="uid://ber283x8u6ura" path="res://assets/frog.tscn" id="1_fedk0"]
 [ext_resource type="Script" uid="uid://b0c4fqqhe351e" path="res://frogger_gym.gd" id="1_jt4di"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://cjmy0ytovwtax" path="res://resources/large_log_alt.tres" id="11_vwvlp"]
 [ext_resource type="Resource" uid="uid://d2jk1ct0f7ucd" path="res://resources/med_log_alt.tres" id="12_vwvlp"]
 [ext_resource type="Resource" uid="uid://bpmfc6c4xfu7c" path="res://resources/turtle_duo.tres" id="13_aijpn"]
+[ext_resource type="AudioStream" uid="uid://dmfl1ahpfcbk8" path="res://content/frogger_music.ogg" id="16_gqsmu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fedk0"]
 
@@ -148,3 +149,8 @@ position = Vector2(120, 224)
 [node name="FrogSpawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(120, 224)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_gqsmu")
+autoplay = true
+parameters/looping = true
