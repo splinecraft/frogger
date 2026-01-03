@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
-size = Vector2(18, 12)
+size = Vector2(14, 12)
 
 [node name="Buggy" type="CharacterBody2D" groups=["Enemy"]]
 motion_mode = 1

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var frog_area_2d: Area2D = $FrogArea2D
 @onready var body_collision: CollisionShape2D = $BodyCollision
 @onready var area_2d_collision: CollisionShape2D = $FrogArea2D/Area2DCollision
+@onready var blood_particles: GPUParticles2D = $BloodParticles
 
 
 const JUMP_TIME := 0.1
@@ -91,6 +92,7 @@ func vehicle_death():
 	print("run over!")
 	death_ip = true
 	frog_sprite.play("car_death")
+	blood_particles.restart()
 	frog_area_2d.set_deferred("monitoring", false)
 	area_2d_collision.set_deferred("disabled", true)
 	body_collision.set_deferred("disabled", true)

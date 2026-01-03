@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
-size = Vector2(13, 12)
+size = Vector2(11, 10)
 
 [node name="Car" type="CharacterBody2D" groups=["Enemy"]]
 motion_mode = 1

@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
-size = Vector2(12, 10)
+size = Vector2(11, 10)
 
 [node name="Tractor" type="CharacterBody2D" groups=["Enemy"]]
 motion_mode = 1
@@ -46,4 +46,5 @@ autoplay = "default"
 frame_progress = 0.3068159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_npdvv")

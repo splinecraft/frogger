@@ -51,59 +51,61 @@ position = Vector2(96.5, 10.999998)
 rotation = 3.1415925
 shape = SubResource("WorldBoundaryShape2D_fedk0")
 
-[node name="StartLane" parent="." instance=ExtResource("4_5m07v")]
+[node name="Frog" parent="." instance=ExtResource("1_fedk0")]
 unique_name_in_owner = true
 position = Vector2(120, 224)
+
+[node name="StartLane" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(-126, 224)
 speed = 0.0
 spawn_pos = Vector2(180, 0)
 
 [node name="Road_Buggy" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 208)
-spawn_pos = Vector2(180, 0)
+position = Vector2(-126, 208)
+spawn_pos = Vector2(480, 0)
 direction = Vector2(-1, 0)
 traffic_pattern = ExtResource("4_hjc2u")
 
 [node name="Road_Tractor" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 192)
+position = Vector2(-126, 192)
 speed = 40.0
-spawn_pos = Vector2(-160, 0)
 traffic_pattern = ExtResource("6_5m07v")
 
 [node name="Road_Sedan" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 176)
+position = Vector2(-126, 176)
 speed = 58.0
-spawn_pos = Vector2(170, 0)
+spawn_pos = Vector2(470, 0)
 direction = Vector2(-1, 0)
 traffic_pattern = ExtResource("7_r7bsx")
 
 [node name="Road_Racecar" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 160)
+position = Vector2(-126, 160)
 speed = 90.0
-spawn_pos = Vector2(-175, 0)
 traffic_pattern = ExtResource("8_8w67v")
 
 [node name="Road_Semi" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 144)
+position = Vector2(-126, 144)
 speed = 40.0
-spawn_pos = Vector2(140, 0)
+spawn_pos = Vector2(450, 0)
 direction = Vector2(-1, 0)
 traffic_pattern = ExtResource("9_in348")
 
 [node name="MidSafe" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 128)
+position = Vector2(-126, 128)
 speed = 0.0
 
 [node name="Water_TurtleTrio" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 112)
+position = Vector2(-126, 112)
 speed = 78.0
-spawn_pos = Vector2(150, 0)
+spawn_pos = Vector2(450, 0)
 direction = Vector2(-1, 0)
 traffic_pattern = ExtResource("10_7t8du")
 use_alt_pattern = true
@@ -111,40 +113,33 @@ alt_pattern_gap = 24.0
 
 [node name="Water_SmallLog" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 96)
-spawn_pos = Vector2(-140, 0)
+position = Vector2(-126, 96)
 traffic_pattern = ExtResource("10_vwvlp")
 use_alt_pattern = true
 
 [node name="Water_LargeLog" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 80)
+position = Vector2(-126, 80)
 speed = 70.0
-spawn_pos = Vector2(-190, 0)
 traffic_pattern = ExtResource("11_vwvlp")
 use_alt_pattern = true
 alt_pattern_gap = 60.0
 
 [node name="Water_TurtleDuo" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 64)
+position = Vector2(-126, 64)
 speed = 65.0
-spawn_pos = Vector2(145, 0)
+spawn_pos = Vector2(450, 0)
 direction = Vector2(-1, 0)
 traffic_pattern = ExtResource("13_aijpn")
 
 [node name="Water_MedLog" parent="." instance=ExtResource("4_5m07v")]
 unique_name_in_owner = true
-position = Vector2(120, 48)
+position = Vector2(-126, 48)
 speed = 60.0
-spawn_pos = Vector2(-150, 0)
 traffic_pattern = ExtResource("12_vwvlp")
 use_alt_pattern = true
 alt_pattern_gap = 48.0
-
-[node name="Frog" parent="." instance=ExtResource("1_fedk0")]
-unique_name_in_owner = true
-position = Vector2(120, 224)
 
 [node name="FrogSpawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -154,3 +149,6 @@ position = Vector2(120, 224)
 stream = ExtResource("16_gqsmu")
 autoplay = true
 parameters/looping = true
+
+[node name="TEMP" type="Marker2D" parent="."]
+position = Vector2(240, 224)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ber283x8u6ura"]
+[gd_scene load_steps=11 format=3 uid="uid://ber283x8u6ura"]
 
 [ext_resource type="Script" uid="uid://dnqv7nkl8uiw2" path="res://assets/frog.gd" id="1_fys16"]
 [ext_resource type="Texture2D" uid="uid://v1h0ve74u1m6" path="res://content/frog.png" id="2_5i15e"]
+[ext_resource type="PackedScene" uid="uid://dnoowoik4tk7p" path="res://assets/blood_particles.tscn" id="3_rln8s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5i15e"]
 atlas = ExtResource("2_5i15e")
@@ -37,7 +38,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"car_death",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -57,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i15e"]
-size = Vector2(10, 10)
+size = Vector2(9, 8)
 
 [node name="Frog" type="CharacterBody2D"]
 script = ExtResource("1_fys16")
@@ -67,6 +68,8 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_7a2v5")
 animation = &"car_death"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -75,9 +78,15 @@ shape = SubResource("RectangleShape2D_5i15e")
 [node name="FrogArea2D" type="Area2D" parent="."]
 
 [node name="Area2DCollision" type="CollisionShape2D" parent="FrogArea2D"]
-position = Vector2(0, 1)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_5i15e")
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
+
+[node name="BloodParticles" parent="." instance=ExtResource("3_rln8s")]
+emitting = false
+one_shot = true
+speed_scale = 1.78
+explosiveness = 1.0

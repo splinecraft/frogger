@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npdvv"]
-size = Vector2(10, 9)
+size = Vector2(10, 7)
 
 [node name="Sedan" type="CharacterBody2D" groups=["Enemy"]]
 motion_mode = 1
