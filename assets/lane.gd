@@ -6,7 +6,7 @@ signal spawn_tick
 @export var spawn_pos: Vector2
 @export var direction: Vector2 = Vector2.ZERO
 @export var carries_frog: bool = false
-@export var is_water_lane: bool = false
+@export var is_water_lane: bool
 @export var traffic_pattern: TrafficPattern
 
 # for spawning object/gap where gap can be different size than object
@@ -24,8 +24,6 @@ var alt_pattern: bool = false
 
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
 	spawn_tick.connect(_on_lane_spawn_tick)
 	spawn_position.position = spawn_pos
 	if use_alt_pattern:

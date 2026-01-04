@@ -55,12 +55,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyb4b"]
-size = Vector2(43, 12)
+size = Vector2(43, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsvuy"]
 size = Vector2(20, 8)
 
-[node name="TurtleDuo" type="CharacterBody2D"]
+[node name="TurtleDuo" type="CharacterBody2D" groups=["Platform"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_o0p8n")

@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 	if dir != Vector2.ZERO:
 		try_start_move(dir)
 
+	
 
 func get_input_direction() -> Vector2:
 	if Input.is_action_just_pressed("left"):
@@ -102,6 +103,7 @@ func vehicle_death():
 	body_collision.set_deferred("disabled", true)
 	
 	death_timer.start()
+	print("death_ip: ", death_ip)
 	
 func respawn():
 	frog_sprite.play("idle")
@@ -112,6 +114,7 @@ func respawn():
 	body_collision.set_deferred("disabled", false)
 	death_ip = false
 	input_enabled = true
+	print("death ip: ", death_ip)
 	
 func _toggle_collision(is_on: bool):
 	if is_on:

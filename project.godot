@@ -27,6 +27,8 @@ window/stretch/scale=5.0
 
 Enemy=""
 Frog=""
+Platform=""
+Water=""
 
 [input]
 

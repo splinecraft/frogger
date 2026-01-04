@@ -20,7 +20,8 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	_check_on_platform(body, false)
 	lane.carries_frog = false
-	
+	if body is Frog:
+		body.in_water = true
 	
 func _check_on_platform(body, state):
 	if body is Frog:
