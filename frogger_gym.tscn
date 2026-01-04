@@ -51,7 +51,52 @@ position = Vector2(96.5, 10.999998)
 rotation = 3.1415925
 shape = SubResource("WorldBoundaryShape2D_fedk0")
 
-[node name="Frog" parent="." instance=ExtResource("1_fedk0")]
+[node name="Water_TurtleTrio" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(-126, 112)
+speed = 78.0
+spawn_pos = Vector2(450, 0)
+direction = Vector2(-1, 0)
+is_water_lane = true
+traffic_pattern = ExtResource("10_7t8du")
+use_alt_pattern = true
+alt_pattern_gap = 24.0
+
+[node name="Water_SmallLog" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(-126, 96)
+is_water_lane = true
+traffic_pattern = ExtResource("10_vwvlp")
+use_alt_pattern = true
+
+[node name="Water_LargeLog" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(-126, 80)
+speed = 70.0
+is_water_lane = true
+traffic_pattern = ExtResource("11_vwvlp")
+use_alt_pattern = true
+alt_pattern_gap = 60.0
+
+[node name="Water_TurtleDuo" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(-126, 64)
+speed = 65.0
+spawn_pos = Vector2(450, 0)
+direction = Vector2(-1, 0)
+is_water_lane = true
+traffic_pattern = ExtResource("13_aijpn")
+
+[node name="Water_MedLog" parent="." instance=ExtResource("4_5m07v")]
+unique_name_in_owner = true
+position = Vector2(-126, 48)
+speed = 60.0
+is_water_lane = true
+traffic_pattern = ExtResource("12_vwvlp")
+use_alt_pattern = true
+alt_pattern_gap = 48.0
+
+[node name="Frog" parent="." groups=["Frog"] instance=ExtResource("1_fedk0")]
 unique_name_in_owner = true
 position = Vector2(120, 224)
 
@@ -101,46 +146,6 @@ unique_name_in_owner = true
 position = Vector2(-126, 128)
 speed = 0.0
 
-[node name="Water_TurtleTrio" parent="." instance=ExtResource("4_5m07v")]
-unique_name_in_owner = true
-position = Vector2(-126, 112)
-speed = 78.0
-spawn_pos = Vector2(450, 0)
-direction = Vector2(-1, 0)
-traffic_pattern = ExtResource("10_7t8du")
-use_alt_pattern = true
-alt_pattern_gap = 24.0
-
-[node name="Water_SmallLog" parent="." instance=ExtResource("4_5m07v")]
-unique_name_in_owner = true
-position = Vector2(-126, 96)
-traffic_pattern = ExtResource("10_vwvlp")
-use_alt_pattern = true
-
-[node name="Water_LargeLog" parent="." instance=ExtResource("4_5m07v")]
-unique_name_in_owner = true
-position = Vector2(-126, 80)
-speed = 70.0
-traffic_pattern = ExtResource("11_vwvlp")
-use_alt_pattern = true
-alt_pattern_gap = 60.0
-
-[node name="Water_TurtleDuo" parent="." instance=ExtResource("4_5m07v")]
-unique_name_in_owner = true
-position = Vector2(-126, 64)
-speed = 65.0
-spawn_pos = Vector2(450, 0)
-direction = Vector2(-1, 0)
-traffic_pattern = ExtResource("13_aijpn")
-
-[node name="Water_MedLog" parent="." instance=ExtResource("4_5m07v")]
-unique_name_in_owner = true
-position = Vector2(-126, 48)
-speed = 60.0
-traffic_pattern = ExtResource("12_vwvlp")
-use_alt_pattern = true
-alt_pattern_gap = 48.0
-
 [node name="FrogSpawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(120, 224)
@@ -149,6 +154,3 @@ position = Vector2(120, 224)
 stream = ExtResource("16_gqsmu")
 autoplay = true
 parameters/looping = true
-
-[node name="TEMP" type="Marker2D" parent="."]
-position = Vector2(240, 224)

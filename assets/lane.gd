@@ -6,6 +6,7 @@ signal spawn_tick
 @export var spawn_pos: Vector2
 @export var direction: Vector2 = Vector2.ZERO
 @export var carries_frog: bool = false
+@export var is_water_lane: bool = false
 @export var traffic_pattern: TrafficPattern
 
 # for spawning object/gap where gap can be different size than object
@@ -87,13 +88,20 @@ func spawn_object():
 	object.global_position = Vector2(spawn_position.global_position)
 	
 	
-	
 func _on_body_entered(body):
 	bodies_in_lane.append(body)
+	_check_in_water(body, true)
 	
 	
 func _on_body_exited(body):
 	bodies_in_lane.erase(body)
+	_check_in_water(body, false)
+	
+	
+func _check_in_water(body, state):
+	if is_water_lane and body is Frog:
+		body.in_water = state
+		print("frog in water: ", body.in_water)
 	
 	
 func apply_lane_motion(delta):
@@ -103,5 +111,5 @@ func apply_lane_motion(delta):
 	var motion = direction * speed * delta
 	for body in bodies_in_lane:
 		if body.has_method("apply_lane_motion"):
-			if carries_frog or body.name != "Frog":
+			if carries_frog or body is not Frog:
 				body.apply_lane_motion(motion)

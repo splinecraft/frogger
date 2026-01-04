@@ -26,6 +26,7 @@ window/stretch/scale=5.0
 [global_group]
 
 Enemy=""
+Frog=""
 
 [input]
 

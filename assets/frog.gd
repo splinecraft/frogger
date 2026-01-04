@@ -1,3 +1,4 @@
+class_name Frog
 extends CharacterBody2D
 
 @onready var frog_sprite: AnimatedSprite2D = $FrogSprite
@@ -29,6 +30,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_moving or not input_enabled:
 		return
+
+	if in_water and not on_platform and not death_ip:
+		vehicle_death()
 	
 	var dir := get_input_direction()
 	if dir != Vector2.ZERO:
@@ -55,10 +59,10 @@ func try_start_move(dir: Vector2):
 	var motion := dir * STEP
 	
 	target_pos = global_position + motion
-	start_jump(target_pos)
+	start_jump()
 	
 	
-func start_jump(target_pos: Vector2):
+func start_jump():
 	is_moving = true
 	
 	# interrupt the jump and restart the tween if new input arrives - feels more responsive
@@ -102,8 +106,19 @@ func vehicle_death():
 func respawn():
 	frog_sprite.play("idle")
 	position = frog_spawn_pos
+	rotation = 0
 	frog_area_2d.set_deferred("monitoring", true)
 	area_2d_collision.set_deferred("disabled", false)
 	body_collision.set_deferred("disabled", false)
 	death_ip = false
 	input_enabled = true
+	
+func _toggle_collision(is_on: bool):
+	if is_on:
+		frog_area_2d.set_deferred("monitoring", true)
+		area_2d_collision.set_deferred("disabled", false)
+		body_collision.set_deferred("disabled", false)
+	else:
+		frog_area_2d.set_deferred("monitoring", false)
+		area_2d_collision.set_deferred("disabled", true)
+		body_collision.set_deferred("disabled", true)

@@ -27,26 +27,12 @@ extends Node2D
 	water_med_log
 ]
 
-var in_water : bool = false
-var on_platform : bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if in_water and not on_platform:
-		print("dead!")
+func _physics_process(delta: float) -> void:
 	for lane in lanes:
 		lane.apply_lane_motion(delta)
 	
-
-func _in_water(body, state) -> void:
-	in_water = state
-	print("in water: ", state)
-	
-	
-func _on_platform(body, state) -> void:
-	on_platform = state
-	print("on platform: ", state)

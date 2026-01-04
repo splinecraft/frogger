@@ -11,18 +11,18 @@ var lane: Area2D = null
 func _ready() -> void:
 	lane = get_parent().get_parent()
 	
-func _physics_process(delta: float) -> void:
-	pass
-
 
 func _on_body_entered(body):
-	on_platform = true
+	_check_on_platform(body, true)
 	lane.carries_frog = true
-	#frog_ref = body
 	
 
 func _on_body_exited(body):
-	on_platform = false
+	_check_on_platform(body, false)
 	lane.carries_frog = false
-	#frog_ref = null
 	
+	
+func _check_on_platform(body, state):
+	if body is Frog:
+		body.on_platform = state
+		print("on platform: ", state)
