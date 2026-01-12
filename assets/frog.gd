@@ -16,6 +16,7 @@ var is_moving := false
 var target_pos: Vector2
 var jump_tween: Tween
 var on_platform: bool = false
+var platform_overlap_count: int = 0
 var in_water: bool = false
 var frog_spawn_pos: Vector2
 var death_ip: bool = false
@@ -31,12 +32,18 @@ func _process(delta: float) -> void:
 	if is_moving or not input_enabled:
 		return
 
+	var overlapping = frog_area_2d.get_overlapping_areas()
+	on_platform = overlapping.any(func(a): return a.is_in_group("Platform"))
+	in_water = overlapping.any(func(a): return a.is_in_group("Water"))
+
 	if in_water and not on_platform and not death_ip:
 		vehicle_death()
 	
 	var dir := get_input_direction()
 	if dir != Vector2.ZERO:
 		try_start_move(dir)
+		
+	#_platform_overlap_count()
 
 	
 
@@ -98,10 +105,10 @@ func vehicle_death():
 	death_ip = true
 	frog_sprite.play("car_death")
 	blood_particles.restart()
-	frog_area_2d.set_deferred("monitoring", false)
-	area_2d_collision.set_deferred("disabled", true)
-	body_collision.set_deferred("disabled", true)
-	
+	#frog_area_2d.set_deferred("monitoring", false)
+	#area_2d_collision.set_deferred("disabled", true)
+	#body_collision.set_deferred("disabled", true)
+	_toggle_collision(false)
 	death_timer.start()
 	print("death_ip: ", death_ip)
 	
@@ -109,10 +116,12 @@ func respawn():
 	frog_sprite.play("idle")
 	position = frog_spawn_pos
 	rotation = 0
-	frog_area_2d.set_deferred("monitoring", true)
-	area_2d_collision.set_deferred("disabled", false)
-	body_collision.set_deferred("disabled", false)
+	#frog_area_2d.set_deferred("monitoring", true)
+	#area_2d_collision.set_deferred("disabled", false)
+	#body_collision.set_deferred("disabled", false)
+	_toggle_collision(true)
 	death_ip = false
+	in_water = false
 	input_enabled = true
 	print("death ip: ", death_ip)
 	
@@ -125,3 +134,9 @@ func _toggle_collision(is_on: bool):
 		frog_area_2d.set_deferred("monitoring", false)
 		area_2d_collision.set_deferred("disabled", true)
 		body_collision.set_deferred("disabled", true)
+		
+func _platform_overlap_count() -> void:
+	if platform_overlap_count >= 1:
+		on_platform = true
+	elif platform_overlap_count <= 0:
+		on_platform = false

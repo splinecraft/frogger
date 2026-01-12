@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=240
 window/size/viewport_height=256
+window/size/always_on_top=true
 window/size/window_width_override=1200
 window/size/window_height_override=1280
 window/stretch/scale=5.0

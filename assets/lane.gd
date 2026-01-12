@@ -26,6 +26,8 @@ var alt_pattern: bool = false
 func _ready() -> void:
 	spawn_tick.connect(_on_lane_spawn_tick)
 	spawn_position.position = spawn_pos
+	if is_water_lane:
+		self.add_to_group("Water")
 	if use_alt_pattern:
 		_setup_alt_pattern()
 	
@@ -88,12 +90,12 @@ func spawn_object():
 	
 func _on_body_entered(body):
 	bodies_in_lane.append(body)
-	_check_in_water(body, true)
+	#_check_in_water(body, true)
 	
 	
 func _on_body_exited(body):
 	bodies_in_lane.erase(body)
-	_check_in_water(body, false)
+	#_check_in_water(body, false)
 	
 	
 func _check_in_water(body, state):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b83ov23vrpvj5"]
+[gd_scene load_steps=24 format=3 uid="uid://b83ov23vrpvj5"]
 
 [ext_resource type="PackedScene" uid="uid://ber283x8u6ura" path="res://assets/frog.tscn" id="1_fedk0"]
 [ext_resource type="Script" uid="uid://b0c4fqqhe351e" path="res://frogger_gym.gd" id="1_jt4di"]
@@ -16,8 +16,22 @@
 [ext_resource type="Resource" uid="uid://d2jk1ct0f7ucd" path="res://resources/med_log_alt.tres" id="12_vwvlp"]
 [ext_resource type="Resource" uid="uid://bpmfc6c4xfu7c" path="res://resources/turtle_duo.tres" id="13_aijpn"]
 [ext_resource type="AudioStream" uid="uid://dmfl1ahpfcbk8" path="res://content/frogger_music.ogg" id="16_gqsmu"]
+[ext_resource type="Script" uid="uid://cr772b803qf3g" path="res://goal_areas.gd" id="17_n1bqr"]
+[ext_resource type="Script" uid="uid://bjk3cbdc7v7rr" path="res://out_of_bounds_death.gd" id="18_87o8q"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fedk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87o8q"]
+size = Vector2(14.5, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18hs2"]
+size = Vector2(31.25, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otr5c"]
+size = Vector2(8, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5mxu"]
+size = Vector2(9, 190)
 
 [node name="Gym" type="Node2D"]
 script = ExtResource("1_jt4di")
@@ -41,14 +55,6 @@ position = Vector2(23, 223)
 position = Vector2(96.5, 10.999998)
 rotation = 3.1415925
 scale = Vector2(-1, -1)
-shape = SubResource("WorldBoundaryShape2D_fedk0")
-
-[node name="WorldBoundaryTop" type="StaticBody2D" parent="WorldBoundaries"]
-position = Vector2(24, 12)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/WorldBoundaryTop"]
-position = Vector2(96.5, 10.999998)
-rotation = 3.1415925
 shape = SubResource("WorldBoundaryShape2D_fedk0")
 
 [node name="Water_TurtleTrio" parent="." instance=ExtResource("4_5m07v")]
@@ -154,3 +160,72 @@ position = Vector2(120, 224)
 stream = ExtResource("16_gqsmu")
 autoplay = true
 parameters/looping = true
+
+[node name="GoalAreas" type="Area2D" parent="."]
+script = ExtResource("17_n1bqr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalAreas"]
+position = Vector2(18.25, 32)
+shape = SubResource("RectangleShape2D_87o8q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GoalAreas"]
+position = Vector2(69, 32)
+shape = SubResource("RectangleShape2D_87o8q")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GoalAreas"]
+position = Vector2(120, 32)
+shape = SubResource("RectangleShape2D_87o8q")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="GoalAreas"]
+position = Vector2(171, 32)
+shape = SubResource("RectangleShape2D_87o8q")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="GoalAreas"]
+position = Vector2(222, 32)
+shape = SubResource("RectangleShape2D_87o8q")
+
+[node name="OutOfBoundsDeath" type="Area2D" parent="."]
+script = ExtResource("18_87o8q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(94.375, 32)
+shape = SubResource("RectangleShape2D_18hs2")
+debug_color = Color(0.9405597, 7.9897045e-06, 0.616655, 0.41960785)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(146, 32)
+shape = SubResource("RectangleShape2D_18hs2")
+debug_color = Color(0.9405597, 7.9897045e-06, 0.616655, 0.41960785)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(196, 32)
+shape = SubResource("RectangleShape2D_18hs2")
+debug_color = Color(0.9405597, 7.9897045e-06, 0.616655, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(43.75, 32)
+shape = SubResource("RectangleShape2D_18hs2")
+debug_color = Color(0.9405597, 7.9897045e-06, 0.616655, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(4, 32)
+shape = SubResource("RectangleShape2D_otr5c")
+debug_color = Color(0.9282029, 0.16016695, 0.5399095, 0.41960785)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(236, 32)
+shape = SubResource("RectangleShape2D_otr5c")
+debug_color = Color(0.9282029, 0.16016695, 0.5399095, 0.41960785)
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(-5, 137)
+shape = SubResource("RectangleShape2D_k5mxu")
+debug_color = Color(0.94033843, 1.3187826e-05, 0.61761975, 0.41960785)
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="OutOfBoundsDeath"]
+position = Vector2(245, 137)
+shape = SubResource("RectangleShape2D_k5mxu")
+debug_color = Color(0.94033843, 1.3187826e-05, 0.61761975, 0.41960785)
+
+[connection signal="body_entered" from="GoalAreas" to="GoalAreas" method="_on_body_entered"]
+[connection signal="body_entered" from="OutOfBoundsDeath" to="OutOfBoundsDeath" method="_on_body_entered"]

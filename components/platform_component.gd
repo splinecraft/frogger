@@ -13,17 +13,17 @@ func _ready() -> void:
 	
 
 func _on_body_entered(body):
-	_check_on_platform(body, true)
+	_check_on_platform(body, 1)
 	lane.carries_frog = true
+	
 	
 
 func _on_body_exited(body):
-	_check_on_platform(body, false)
+	_check_on_platform(body, -1)
 	lane.carries_frog = false
-	if body is Frog:
-		body.in_water = true
+	
 	
 func _check_on_platform(body, state):
 	if body is Frog:
-		body.on_platform = state
-		print("on platform: ", state)
+		body.platform_overlap_count += state
+		print("on platform count: ", body.platform_overlap_count)
