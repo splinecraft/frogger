@@ -9,6 +9,8 @@ extends CharacterBody2D
 @onready var blood_particles: GPUParticles2D = $BloodParticles
 
 
+
+
 const JUMP_TIME := 0.1
 const STEP := 16
 
@@ -21,6 +23,8 @@ var in_water: bool = false
 var frog_spawn_pos: Vector2
 var death_ip: bool = false
 var input_enabled: bool = true
+var blood_tex = preload("res://content/red_blob.png")
+var water_tex = preload("res://content/water_blob.png")
 
 func _ready() -> void:
 	frog_area_2d.body_entered.connect(_on_body_entered)
@@ -37,7 +41,7 @@ func _process(delta: float) -> void:
 	in_water = overlapping.any(func(a): return a.is_in_group("Water"))
 
 	if in_water and not on_platform and not death_ip:
-		vehicle_death()
+		death("water_death")
 	
 	var dir := get_input_direction()
 	if dir != Vector2.ZERO:
@@ -93,21 +97,24 @@ func _on_jump_finished():
 	
 func _on_body_entered(body):
 	if body.is_in_group("Enemy") and not death_ip:
-		vehicle_death()
+		death("red_death")
 	
 	
 func apply_lane_motion(motion: Vector2):
 	global_position += motion
 	
-func vehicle_death():
+func death(type: String):
 	input_enabled = false
 	print("run over!")
 	death_ip = true
-	frog_sprite.play("car_death")
+	frog_sprite.play(type)
+	
+	if type == "water_death":
+		blood_particles.texture = water_tex
+	else:
+		blood_particles.texture = blood_tex
 	blood_particles.restart()
-	#frog_area_2d.set_deferred("monitoring", false)
-	#area_2d_collision.set_deferred("disabled", true)
-	#body_collision.set_deferred("disabled", true)
+	
 	_toggle_collision(false)
 	death_timer.start()
 	print("death_ip: ", death_ip)
@@ -116,9 +123,7 @@ func respawn():
 	frog_sprite.play("idle")
 	position = frog_spawn_pos
 	rotation = 0
-	#frog_area_2d.set_deferred("monitoring", true)
-	#area_2d_collision.set_deferred("disabled", false)
-	#body_collision.set_deferred("disabled", false)
+	
 	_toggle_collision(true)
 	death_ip = false
 	in_water = false

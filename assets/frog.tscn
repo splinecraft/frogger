@@ -1,8 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://ber283x8u6ura"]
+[gd_scene load_steps=19 format=3 uid="uid://ber283x8u6ura"]
 
 [ext_resource type="Script" uid="uid://dnqv7nkl8uiw2" path="res://assets/frog.gd" id="1_fys16"]
 [ext_resource type="Texture2D" uid="uid://v1h0ve74u1m6" path="res://content/frog.png" id="2_5i15e"]
 [ext_resource type="PackedScene" uid="uid://dnoowoik4tk7p" path="res://assets/blood_particles.tscn" id="3_rln8s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rln8s"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey7vd"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi7kg"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7luy"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5i15e"]
 atlas = ExtResource("2_5i15e")
@@ -16,16 +32,60 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("2_5i15e")
 region = Rect2(80, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rln8s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_syi3p"]
 atlas = ExtResource("2_5i15e")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(128, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x7luy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8psky"]
 atlas = ExtResource("2_5i15e")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljubi"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nihw"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16ie2"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frfut"]
+atlas = ExtResource("2_5i15e")
+region = Rect2(208, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7a2v5"]
 animations = [{
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_rln8s")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_ey7vd")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_gi7kg")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_ey7vd")
+}, {
+"duration": 18.0,
+"texture": SubResource("AtlasTexture_rln8s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7luy")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5i15e")
@@ -37,24 +97,34 @@ animations = [{
 "texture": SubResource("AtlasTexture_7a2v5")
 }],
 "loop": false,
-"name": &"car_death",
+"name": &"red_death",
 "speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rln8s")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_syi3p")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x7luy")
+"texture": SubResource("AtlasTexture_8psky")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ljubi")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0nihw")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_16ie2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_frfut")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
-"name": &"jump",
-"speed": 6.0
+"name": &"water_death",
+"speed": 11.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i15e"]
@@ -66,9 +136,9 @@ script = ExtResource("1_fys16")
 [node name="FrogSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_7a2v5")
-animation = &"car_death"
+animation = &"water_death"
 autoplay = "idle"
-frame = 2
+frame = 6
 frame_progress = 1.0
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
